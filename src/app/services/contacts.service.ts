@@ -112,4 +112,12 @@ export class ContactsService {
       this.router.navigate(['/']);
     }, 2000);
   }
+
+  deleteContact(email: string) {
+    setTimeout(() => {
+      this.contacts.update((contacts) =>
+        contacts.filter((c) => c.email !== email)
+      );
+    }, 2000);
+  }
 }
