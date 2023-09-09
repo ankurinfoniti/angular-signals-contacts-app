@@ -7,6 +7,8 @@ import { Contact } from '../models/contact.model';
   providedIn: 'root',
 })
 export class ContactsService {
+  readonly MAX_CONTACTS_ALLOWED = 21;
+
   contacts = signal<Contact[]>([
     {
       name: 'Bibbye Gutcher',
@@ -103,6 +105,10 @@ export class ContactsService {
   ]);
 
   totalContacts = computed(() => this.contacts().length);
+
+  maxReached = computed(
+    () => this.totalContacts() >= this.MAX_CONTACTS_ALLOWED
+  );
 
   router = inject(Router);
 
