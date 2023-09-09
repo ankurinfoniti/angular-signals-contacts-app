@@ -2,6 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Contact } from '../models/contact.model';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root',
@@ -111,19 +112,26 @@ export class ContactsService {
   );
 
   router = inject(Router);
+  loader = inject(LoaderService);
 
   addContact(newContact: Contact) {
+    this.loader.showLoader();
+
     setTimeout(() => {
       this.contacts.update((contacts) => [newContact, ...contacts]);
+      this.loader.hideLoader();
       this.router.navigate(['/']);
     }, 2000);
   }
 
   deleteContact(email: string) {
+    this.loader.showLoader();
+
     setTimeout(() => {
       this.contacts.update((contacts) =>
         contacts.filter((c) => c.email !== email)
       );
+      this.loader.hideLoader();
     }, 2000);
   }
 }

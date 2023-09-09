@@ -5,8 +5,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ContactsService } from './services/contacts.service';
+import { LoaderService } from './services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,7 @@ import { ContactsService } from './services/contacts.service';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -29,6 +32,7 @@ export class AppComponent {
   totalContacts = this.contactsService.totalContacts;
   maxReached = this.contactsService.maxReached;
 
+  loading = inject(LoaderService).loading;
   snackbar = inject(MatSnackBar);
 
   constructor() {
