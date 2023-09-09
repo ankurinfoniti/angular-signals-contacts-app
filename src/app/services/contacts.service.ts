@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, computed, signal } from '@angular/core';
 
 import { Contact } from '../models/contact.model';
 
@@ -100,4 +100,6 @@ export class ContactsService {
       email: 'jkeenj@bizjournals.com',
     },
   ]);
+
+  totalContacts = computed(() => this.contacts().length);
 }
