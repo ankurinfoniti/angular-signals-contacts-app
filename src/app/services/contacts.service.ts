@@ -1,4 +1,5 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Contact } from '../models/contact.model';
 
@@ -102,4 +103,13 @@ export class ContactsService {
   ]);
 
   totalContacts = computed(() => this.contacts().length);
+
+  router = inject(Router);
+
+  addContact(newContact: Contact) {
+    setTimeout(() => {
+      this.contacts.update((contacts) => [newContact, ...contacts]);
+      this.router.navigate(['/']);
+    }, 2000);
+  }
 }

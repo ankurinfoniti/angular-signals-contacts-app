@@ -1,0 +1,14 @@
+.container {
+  padding: 24px;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
